@@ -8,13 +8,12 @@ import {authValidation }from "../validations/auth";
 
 export const login = async(req:Request,res:Response)=>{
     try {
-        const data = await authValidation.parse(req.body)  // Para validar email
-        const user = await getUseEmail(data.email)  // mas dentro user vem todos dados usuario como nome e senha .mas  se email for validdo vou busca no banco de dados .
-        
+        const data = await authValidation.parse(req.body) 
+        const user = await getUseEmail(data.email) 
         // caso não existe usuario 
         if (!user) throw{message:"Usuário não existe !"}
 
-         // Para verficar se a senha é mesma que usario esta passando é que esta salva no banco de dado , for vou gerar um token 
+    
         if(user && bcrypt.compareSync(req.body.password,user.password)){
             const token = jwt.sign({
                 id:user.id,
