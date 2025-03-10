@@ -4,9 +4,9 @@ import {  Request,Response} from "express";
 
 // Criar 
 export const create = async(req:Request,res:Response)=>{
-      // Muito atenção aquii
+      
     try {
-         await salesValidation.parse(req.body)// passo direto sem uso de const data 
+         await salesValidation.parse(req.body)
         const sales = await createSales(req.body)
         return res.status(200).send(sales)
     } catch (error) {
@@ -37,8 +37,8 @@ export const getId = async(req:Request,res:Response)=>{
 export const update = async(req:Request,res:Response)=>{
     try {
 
-           // Muito atenção aquii
-          await updateSalesValidation.parse(req.body) // passo direto sem uso de const data 
+           
+          await updateSalesValidation.parse(req.body) 
           const sales = await updateSales(Number(req.params.id),req.body)
       
         return res.status(200).send(sales)

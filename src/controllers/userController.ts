@@ -14,7 +14,7 @@ export const create = async (req:Request,res:Response) => {
       // Criptografa a senha
       const hashedPassword = await bcrypt.hash(data.password, 10);
 
-      data.password = hashedPassword; // Corrigido para alterar o próprio objeto `data`
+      data.password = hashedPassword; 
   
       // Cria o usuário
       const user = await createUser(data);
